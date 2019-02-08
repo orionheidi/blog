@@ -12,6 +12,8 @@
         @foreach($posts as $post)
         <li>
         {{ $post->title }}
+        <br>
+        {{ $post->body }}
         </li>
         @endforeach
         </ul>

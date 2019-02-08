@@ -9,5 +9,6 @@
 <body>
     <div>{{ $post->title }}</div>  
         <div>{{ $post->body}}</div>
+        <div>{{ $post->published}}</div>
 </body>
 </html>
