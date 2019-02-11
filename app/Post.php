@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'title','body',
+        'title','body','published',
     ];
 
     public static function published()
@@ -20,7 +20,9 @@ class Post extends Model
         return self::where('published',0)->get();
     }    
 
-
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 
 
 // protected $guarded = [

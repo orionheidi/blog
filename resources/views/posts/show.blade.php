@@ -1,14 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Single post</title>
-</head>
-<body>
+@extends('layouts.master')
+
+@section('title',$post->title)
+
+
+@section('content')
     <div>{{ $post->title }}</div>  
         <div>{{ $post->body}}</div>
-        <div>{{ $post->published}}</div>
-</body>
-</html>
+        <hr/>
+        @foreach($post->comments as $comment)
+        <div class="p-4 alert alert-success">
+                <div class ="text-muted">  
+                    {{$comment->created_at}}
+                </div>
+            <strong>{{$comment->author}} says: </strong>
+            {{ $comment->text}}
+        </div>
+        @endforeach
+@endsection
