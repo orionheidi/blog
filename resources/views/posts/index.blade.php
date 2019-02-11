@@ -20,7 +20,6 @@ All post
 
         <div class="container">
     
-    
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8 blog-main">
@@ -33,6 +32,7 @@ All post
             <p class="blog-post-meta"> {{ $post->created_at }}<a href="#"> Mark</a></p>
             <p>{{ $post->body }}</p>
           </div><!-- /.blog-post -->
+          
           @endforeach
 
         </div><!-- /.row -->

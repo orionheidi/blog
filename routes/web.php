@@ -25,5 +25,7 @@ Route::get('/', function () {
 
 Route::resource('posts','PostController');
 
+Route::post('posts/{id}/comments','PostController@addComment')->name('posts.comments');
+
 // Route::get('posts','PostController@index');
 // Route::get('posts/{id}','PostController@show');

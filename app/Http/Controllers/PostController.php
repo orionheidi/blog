@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Comment;
 
 class PostController extends Controller
 {
@@ -98,5 +99,21 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addComment(Request $request,$id)
+    {
+        Comment::create([
+            'post_id' => $id,
+            'author' => $request->author,
+            'text' => $request->text
+        ]);
+
+        return redirect()
+        ->back();
+
+        // Post::findOrFail($id)
+        // ->addComments
+        // ->create($request->all());
     }
 }
