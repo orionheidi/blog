@@ -43,6 +43,7 @@ class PostController extends Controller
             'title' => 'required|min:5',
             'body' =>'required'
         ]);
+
         Post::create($request->all());
 
         // return redirect('/posts');
@@ -103,6 +104,11 @@ class PostController extends Controller
 
     public function addComment(Request $request,$id)
     {
+        $request->validate([
+            'author' => 'required|max:10',
+            'text' =>'required'
+        ]);
+
         Comment::create([
             'post_id' => $id,
             'author' => $request->author,
