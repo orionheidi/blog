@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
-
+use App\Http\Requests\CreateCommentRequest;
 class PostController extends Controller
 {
     /**
@@ -102,11 +102,11 @@ class PostController extends Controller
         //
     }
 
-    public function addComment(Request $request,$id)
+    public function addComment(CreateCommentRequest $request,$id)
     {
         $request->validate([
-            'author' => 'required|max:10',
-            'text' =>'required'
+            'author'=> 'required|max:5',
+            'text' => 'required|min:30'
         ]);
 
         Comment::create([
