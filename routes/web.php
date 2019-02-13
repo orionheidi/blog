@@ -24,6 +24,10 @@ Route::get('/', function () {
 // });
 
 Route::resource('posts','PostController');
+Route::get('/register',['as'=> 'show-register', 'uses' => 'RegisterController@create']);
+Route::post('/register','RegisterController@store')->name('register');
+
+
 
 Route::post('posts/{id}/comments','PostController@addComment')->name('posts.comments');
 
