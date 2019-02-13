@@ -27,7 +27,8 @@ Route::resource('posts','PostController');
 Route::get('/register',['as'=> 'show-register', 'uses' => 'RegisterController@create']);
 Route::post('/register','RegisterController@store')->name('register');
 Route::get('/logout','LoginController@logout')->name('logout');
-
+Route::get('/login','LoginController@create')->name('show-register');
+Route::post('/login','LoginController@store')->name('login');
 
 
 Route::post('posts/{id}/comments','PostController@addComment')->name('posts.comments');
