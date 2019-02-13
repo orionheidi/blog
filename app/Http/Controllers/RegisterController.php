@@ -18,7 +18,11 @@ class RegisterController extends Controller
             'password' =>'required|min:6'
         ]);
 
-        User::create($request->only(['email','name','password']));
+        $data = $request->only(['email','name','password']);
+        $data['password'] = bcrypt($data['password']);
+
+        $user = User::create($data);
+        auth()->login($user);
 
         return redirect('/posts');
         // return redirect(route('posts.index'));
