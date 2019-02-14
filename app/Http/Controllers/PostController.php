@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
 use App\Http\Requests\CreateCommentRequest;
+use App\Mail\CommentReceived;
+
 class PostController extends Controller
 {
 
@@ -48,9 +50,12 @@ class PostController extends Controller
             'body' =>'required'
         ]);
 
-        Post::create(array_merge($request->all(),
-            ['user_id'=> auth()->user()->id]
-        ));
+        Post::create(
+            array_merge(
+                $request->all(),
+                ['user_id'=> auth()->user()->id]
+            )
+        );
 
         // return redirect('/posts');
 
@@ -115,12 +120,19 @@ class PostController extends Controller
             'text' => 'required|min:30'
         ]);
 
-        Comment::create([
+        // $comment = $post->comments()->create(request()->all());
+        $comment = Comment::create([
             'post_id' => $id,
             'author' => $request->author,
             'text' => $request->text
         ]);
 
+        if($comment->post->user){
+        \Mail::to($post->user)->send(new CommentReceived(
+            $comment->post,$comment
+        ));
+
+    }
         return redirect()
         ->back();
 
