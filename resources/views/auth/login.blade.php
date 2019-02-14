@@ -23,9 +23,15 @@
                 @include('partials.invalid-feedback',['field' => 'password'])
          </div>
          </div>
-         <div  class="form-group row">
-            @include('partials.invalid-feedback',['field' => 'message']) 
-         </div>
+         <div class="form-group">
+                <input 
+                class="form-control {{ $errors->has("message") ? "is-invalid" : "" }}" 
+                type="hidden" 
+        />
+
+                @include("partials.invalid-feedback", ['field' => 'message'])
+
+            </div>
    
            <div class="form-group row">
                <div class="offset-4 col-8">
