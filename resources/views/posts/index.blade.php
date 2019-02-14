@@ -28,10 +28,13 @@ All post
 
     <div class="blog-post">
       <h2 class="blog-post-title"> {{ $post->title }}</h2>
-    <p class="blog-post-meta"> {{ $post->created_at }}<a href="#"> {{ $post->user_id }}</a></p>
+    <p class="blog-post-meta"> {{ $post->created_at }}</p>
+     @if($post->user)
+   <p>Created by {{ $post->user->name }}</p>
+    @endif
       <p>{{ $post->body }}</p>
     </div><!-- /.blog-post -->
-          
+        
     @endforeach
 
     </div><!-- /.row -->
