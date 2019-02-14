@@ -32,6 +32,11 @@ Route::group(['middleware' => ['guest']],function(){
     Route::post('/login','LoginController@store')->name('login');
 });
 
+Route::group(['middleware' => ['auth']],function(){
+ 
+    Route::get('/users/posts','UserController@index')->name('users.posts');
+});
+
 
 Route::resource('posts','PostController');
 Route::get('/logout','LoginController@logout')->name('logout');
