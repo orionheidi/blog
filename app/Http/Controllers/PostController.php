@@ -8,6 +8,10 @@ use App\Comment;
 use App\Http\Requests\CreateCommentRequest;
 class PostController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth',['only' =>['create','store'] ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +48,9 @@ class PostController extends Controller
             'body' =>'required'
         ]);
 
-        Post::create($request->all());
+        Post::create(array_merge($request->all(),
+            ['user_id'=> auth()->user()->id]
+        ));
 
         // return redirect('/posts');
 
