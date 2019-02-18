@@ -12,7 +12,7 @@ class PostController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth',['only' =>['create','store'] ]);
+        $this->middleware('auth',['only' =>['create','store']]);
     }
     /**
      * Display a listing of the resource.
@@ -113,31 +113,31 @@ class PostController extends Controller
         //
     }
 
-    public function addComment(CreateCommentRequest $request,$id)
-    {
-        $request->validate([
-            'author'=> 'required|max:5',
-            'text' => 'required|min:30'
-        ]);
+    // public function addComment(CreateCommentRequest $request,$id)
+    // {
+    //     $request->validate([
+    //         'author'=> 'required|max:5',
+    //         'text' => 'required|min:30'
+    //     ]);
 
-        // $comment = $post->comments()->create(request()->all());
-        $comment = Comment::create([
-            'post_id' => $id,
-            'author' => $request->author,
-            'text' => $request->text
-        ]);
+    //     // $comment = $post->comments()->create(request()->all());
+    //     $comment = Comment::create([
+    //         'post_id' => $id,
+    //         'author' => $request->author,
+    //         'text' => $request->text
+    //     ]);
 
-        if($comment->post->user){
-        \Mail::to($post->user)->send(new CommentReceived(
-            $comment->post,$comment
-        ));
+    //     if($comment->post->user){
+    //     \Mail::to($this->post->user)->send(new CommentReceived(
+    //         $comment->post,$comment
+    //     ));
 
-    }
-        return redirect()
-        ->back();
+    // }
+    //     return redirect()
+    //     ->back();
 
-        // Post::findOrFail($id)
-        // ->addComments
-        // ->create($request->all());
-    }
+    //     // Post::findOrFail($id)
+    //     // ->addComments
+    //     // ->create($request->all());
+    // }
 }

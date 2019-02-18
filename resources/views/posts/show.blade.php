@@ -19,7 +19,7 @@
  @endforeach
 
 <div class="container">
-    <form method="POST" action="{{ route('posts.comments',['id' => $post->id]) }}">
+    <form method="POST" action="{{ route('comments-post',['id' => $post->id]) }}">
     @csrf
     <div class="form-group row">
         <label for="text" class="col-4 col-form-label">Author</label>

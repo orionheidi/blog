@@ -33,17 +33,15 @@ Route::group(['middleware' => ['guest']],function(){
 });
 
 Route::group(['middleware' => ['auth']],function(){
- 
     Route::get('/users/posts','UserController@index')->name('users.posts');
 });
 
 
 Route::resource('posts','PostController');
 Route::get('/logout','LoginController@logout')->name('logout');
-Route::post('posts/{id}/comments','PostController@addComment')->name('posts.comments');
+Route::post('posts/{id}/comments','CommentsController@store')->name('posts.comments');
 
-
-
-
+Route::post('/posts/{postId}/comments', ['as' => 'comments-post', 'uses' => 'CommentsController@store']);
+// Route::get('/posts/{id}','PostController@show')->name('posts.show');
 // Route::get('posts','PostController@index');
 // Route::get('posts/{id}','PostController@show');

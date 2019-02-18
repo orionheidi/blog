@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Post;
+use App\Comment;
 
 class CommentReceived extends Mailable
 {
@@ -14,12 +15,13 @@ class CommentReceived extends Mailable
 
     public $post;
     public $comment;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Post $post,Comment $comment)
+    public function __construct(Post $post, Comment $comment)
     {
         $this->post = $post;
         $this->comment = $comment;
@@ -32,11 +34,9 @@ class CommentReceived extends Mailable
      */
     public function build()
     {
-    return $this->view('emails.comment-received',[
-        'post' => $this->post,
-        'comment' => $this->comment
-    ]
-    
-    );
+        return $this->view(route('email.comments'), [
+            'post' => $this->post,
+            'comment' => $this->comment
+        ]);
     }
 }

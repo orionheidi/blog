@@ -16,14 +16,15 @@ class LoginController extends Controller
     }
 
     public function store(Request $request){
-        $this->validate($request,[
+        $this->validate($request,
+        [
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
         if(!auth()->attempt($request->only(['email','password']))){
             return back()->withErrors([
-                'message' => 'Wrong login Credentials'
+            'message' => 'Wrong login Credentials'
             ]);
         }
         return redirect()->route('posts.index');

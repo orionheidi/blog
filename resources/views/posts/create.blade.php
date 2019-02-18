@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="container">
-   <form method="POST" action="/posts">
-   {{-- <form method="POST" action="/blog/public/posts"> --}}
+   {{-- <form method="POST" action="/posts"> --}}
+   <form method="POST" action="/blog/public/posts">
     @csrf
         <div class="form-group row">
            <label for="text" class="col-4 col-form-label">Title</label>
