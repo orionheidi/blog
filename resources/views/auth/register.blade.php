@@ -25,7 +25,7 @@
     <div class="form-group row">
         <label for="text" class="col-4 col-form-label">Password</label>
         <div class="col-8">
-        <input id="text" name="password" type="text" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }} " value= "{{ old('password') }}" >
+        <input id="text" name="password" type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }} " value= "{{ old('password') }}" >
             @include('partials.invalid-feedback',['field' => 'password'])
         </div>
     </div>

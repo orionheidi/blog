@@ -23,7 +23,7 @@ class CommentsController extends Controller
 
     public function store($postId)
     {
-        $post = Post::find($postId);
+        $post = Post::findOrFail($postId);
 
         // $request->validate([
         //     'author'=> 'required|max:5',
@@ -38,10 +38,10 @@ class CommentsController extends Controller
 
         if ($post->user) {
             \Mail::to($post->user)->send(new CommentReceived(
-            $post, $comment
+                $post, $comment
             ));
         }
-        return redirect(route('posts.show',['id' => $postId]));
+        return redirect(route('posts.show', [ 'id' => $postId ]));
     }
 
     /**

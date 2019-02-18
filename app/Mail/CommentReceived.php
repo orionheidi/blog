@@ -34,7 +34,7 @@ class CommentReceived extends Mailable
      */
     public function build()
     {
-        return $this->view(route('email.comments'), [
+        return $this->view('email.comments', [
             'post' => $this->post,
             'comment' => $this->comment
         ]);
