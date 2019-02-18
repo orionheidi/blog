@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['guest']],function(){
     Route::get('/register',['as'=> 'show-register', 'uses' => 'RegisterController@create']);
-    Route::post('/register','RegisterController@store')->name('register');
+    Route::post('/register','RegisterController@store')->name('register')->middleware('age');
     Route::get('/login','LoginController@create')->name('show-register');
     Route::post('/login','LoginController@store')->name('login');
 });

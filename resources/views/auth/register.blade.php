@@ -30,6 +30,22 @@
         </div>
     </div>
     <div class="form-group row">
+        <label for="text" class="col-4 col-form-label">Age</label>
+        <div class="col-8">
+        <select id ="age" name="age" class="form-control" >
+            @for ($i=1;$i<=100;$i++)
+        <option value="{{$i}}">{{$i}}</option>
+            @endfor
+        </select>
+            @include('partials.invalid-feedback',['field' => 'age'])
+        </div>
+    </div>
+    @if($message = session('message'))
+        <div class="alert alert-danger" role="alert">
+            {{$message}}
+        </div>
+    @endif
+    <div class="form-group row">
         <div class="offset-4 col-8">
         <button type="submit" class="btn btn-primary">Register</button>
         </div>
