@@ -33,8 +33,14 @@ All post
    <p>Created by {{ $post->user->name }}</p>
     @endif
       <p>{{ $post->body }}</p>
+      <form method="POST" action="{{route('posts-destroy', ['id' => $post->id])}}">
+          {{ csrf_field() }}
+          {{-- {{ method('DELETE')}}  ili jedno ili drugo ovo dole --}}
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="submit">Delete</button>
+      </form>
     </div><!-- /.blog-post -->
-        
+  </form>  
     @endforeach
 
     </div><!-- /.row -->

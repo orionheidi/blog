@@ -110,7 +110,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->delete();
+
+        return view('posts.index',compact('posts'));
     }
 
     // public function addComment(CreateCommentRequest $request,$id)

@@ -44,4 +44,4 @@ Route::post('posts/{id}/comments','CommentsController@store')->name('posts.comme
 Route::post('/posts/{postId}/comments', ['as' => 'comments-post', 'uses' => 'CommentsController@store']);
 // Route::get('/posts/{id}','PostController@show')->name('posts.show');
 // Route::get('posts','PostController@index');
-// Route::get('posts/{id}','PostController@show');
+Route::delete('posts/{id}','PostController@destroy')->name('posts-destroy');

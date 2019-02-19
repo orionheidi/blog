@@ -10,6 +10,10 @@ class Post extends Model
         'title','body','published','user_id'
     ];
 
+    // protected $casts = [
+    //     'published' => 'boolean'
+    // ];
+
     public static function published()
     {
         // return self::where('published',1)->get();
