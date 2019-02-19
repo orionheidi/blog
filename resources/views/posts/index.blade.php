@@ -39,7 +39,8 @@ All post
 
     </div><!-- /.row -->
   </main><!-- /.container -->
-    
+
+  {{$posts->links()}} 
 @endsection 
 
 <style>
