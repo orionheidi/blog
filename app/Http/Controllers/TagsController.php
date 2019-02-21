@@ -16,7 +16,7 @@ class TagsController extends Controller
     {
         // $tag = Tag::all();
 
-        $posts =$tag->posts;
+        $posts =$tag->posts()->paginate(10);
         return view('posts.index',compact('posts'));
     }
 
