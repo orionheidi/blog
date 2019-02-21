@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use App\Tag;
 use App\Http\Requests\CreateCommentRequest;
 use App\Mail\CommentReceived;
 
@@ -34,7 +35,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all();
+        return view('posts.create', compact('tags'));
     }
 
     /**
@@ -47,15 +49,18 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|min:5',
-            'body' =>'required'
+            'body' =>'required',
+            'tags' => 'required|array'
         ]);
 
-        Post::create(
+        $post = Post::create(
             array_merge(
                 $request->all(),
                 ['user_id'=> auth()->user()->id]
             )
         );
+
+        $post->tags()->attach(request('tags'));
 
         // return redirect('/posts');
 

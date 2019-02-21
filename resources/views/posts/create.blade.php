@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="container">
-   {{-- <form method="POST" action="/posts"> --}}
-   <form method="POST" action="/blog/public/posts">
+   <form method="POST" action="/posts">
+   {{-- <form method="POST" action="/blog/public/posts"> --}}
     @csrf
         <div class="form-group row">
            <label for="text" class="col-4 col-form-label">Title</label>
@@ -22,6 +22,14 @@
                    @include('partials.invalid-feedback',['field' => 'body'])
                 </div>
            </div>
+           @if(count($tags))
+            <div class="form-group">
+                <label for="tags[]">Tags</label>
+                @foreach($tags as $tag)
+                <input type="checkbox" id="tag" name="tags[]" value="{{$tag->id}}">{{$tag->name}}<br>
+                @endforeach
+            </div>
+           @endif
            <div class="form-group row">
                <div class="offset-4 col-8">
                <button type="submit" class="btn btn-primary">Submit</button>

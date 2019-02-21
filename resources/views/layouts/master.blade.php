@@ -11,6 +11,9 @@
     </title>
 </head>
 <body>
+    @foreach($tags as $tag)
+    <a href="tags-posts,['id'=t">{{$tag->id}}</a>
+    @endforeach
     {{-- @include('partials.header') --}}
     @include('partials.navbar')
     @yield('content')
