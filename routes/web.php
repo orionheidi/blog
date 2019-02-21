@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('/users/posts','UserController@index')->name('users.posts');
 });
 
-
+Route::get('/posts/tags/{tag}','TagsController@index');
 Route::resource('posts','PostController');
 Route::get('/logout','LoginController@logout')->name('logout');
 Route::post('posts/{id}/comments','CommentsController@store')->name('posts.comments');
