@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tag;
+use App\Post;
 
 class TagsController extends Controller
 {
@@ -15,7 +16,6 @@ class TagsController extends Controller
     public function index(Tag $tag)
     {
         // $tag = Tag::all();
-
         $posts =$tag->posts()->paginate(10);
         return view('posts.index',compact('posts'));
     }

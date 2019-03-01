@@ -11,11 +11,11 @@
     </title>
 </head>
 <body>
+    @include('partials.navbar')
     @foreach($tags as $tag)
-    <a href="tags-posts,['id'=t">{{$tag->id}}</a>
+        <a href="{{ route('tags-posts',['id' => $tag->id]) }}">{{$tag->name}}</a>
     @endforeach
     {{-- @include('partials.header') --}}
-    @include('partials.navbar')
     @yield('content')
     @include('partials.footer')
 </body>

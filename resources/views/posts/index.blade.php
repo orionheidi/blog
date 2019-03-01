@@ -5,19 +5,6 @@ All post
 @endsection 
 
 @section('content')
-
-    {{-- <div>
-        <ul>
-        @foreach($posts as $post)
-        <li>
-        {{ $post->title }}
-        <br>
-        {{ $post->body }}
-        </li>
-        @endforeach
-        </ul>
-    </div> --}}
-
 <div class="container">   
   <main role="main" class="container">
     <div class="row">
@@ -34,10 +21,13 @@ All post
     @endif
       <p>{{ $post->body }}</p>
       <form method="POST" action="{{route('posts-destroy', ['id' => $post->id])}}">
-          {{ csrf_field() }}
+          @csrf
+          @method('DELETE')
+          @csrf
+          <button type="submit">Delete</button> 
           {{-- {{ method('DELETE')}}  ili jedno ili drugo ovo dole --}}
-          <input type="hidden" name="_method" value="DELETE" />
-          <button type="submit">Delete</button>
+          {{-- <input type="hidden" name="_method" value="delete" />
+          <button type="submit">Delete</button> --}}
       </form>
     </div><!-- /.blog-post -->
   </form>  

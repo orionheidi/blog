@@ -119,6 +119,8 @@ class PostController extends Controller
 
         $post->delete();
 
+        $posts = Post::with('user')->paginate(10);
+
         return view('posts.index',compact('posts'));
     }
 

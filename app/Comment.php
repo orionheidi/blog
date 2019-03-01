@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $garded = ['id'];
+    // protected $guarded = ['id'];
  
     const STORE_RULES = [
         'author' => 'required | string',
